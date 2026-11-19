@@ -2,10 +2,18 @@
 
 > یک پازل match-3 جواهر با cascade، specialهای line-clearer و bomb، و ۱۲ مرحله — PWA با Vanilla JS.
 
-[![Version](https://img.shields.io/badge/version-v0.0.1-blue)](https://github.com/andrbi107/gem-cascade/releases/tag/v0.0.1) [![PWA](https://img.shields.io/badge/PWA-installable-purple)](https://andrbi107.github.io/gem-cascade/) [![No deps](https://img.shields.io/badge/dependencies-none-success)](https://github.com/andrbi107/gem-cascade) [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+[![Version](https://img.shields.io/badge/version-v0.0.2-blue)](https://github.com/andrbi107/gem-cascade/releases/tag/v0.0.2) [![PWA](https://img.shields.io/badge/PWA-installable-purple)](https://andrbi107.github.io/gem-cascade/) [![No deps](https://img.shields.io/badge/dependencies-none-success)](https://github.com/andrbi107/gem-cascade) [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 🎮 **[بازی کن](https://andrbi107.github.io/gem-cascade/)** — نسخه‌ی آنلاین روی GitHub Pages
-📦 **[مخزن گیت‌هاب](https://github.com/andrbi107/gem-cascade)** · 🏷️ **[Release v0.0.1](https://github.com/andrbi107/gem-cascade/releases/tag/v0.0.1)**
+📦 **[مخزن گیت‌هاب](https://github.com/andrbi107/gem-cascade)** · 🏷️ **[Release v0.0.2](https://github.com/andrbi107/gem-cascade/releases/tag/v0.0.2)**
+
+---
+
+## تغییرات v0.0.2 (جدید)
+
+**Gem Cascade** — ۳ سطح جدید (۱۳-۱۵) با مکانیک frost: روی این سطح‌ها همه‌ی امتیازهای cascade ×۲ محاسبه می‌شوند. haptic روی هر cascade.
+
+**همه‌ی بازی‌ها** — `mobile-ux.js` مشترک (haptics/install prompt/version stamp) + cache sw.js به v2.
 
 ---
 

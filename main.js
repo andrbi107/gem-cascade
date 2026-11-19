@@ -50,7 +50,11 @@
     { id: 9,  target: 5000, moves: 23 },
     { id: 10, target: 5800, moves: 24 },
     { id: 11, target: 6800, moves: 25 },
-    { id: 12, target: 8000, moves: 25 }
+    { id: 12, target: 8000, moves: 25 },
+    // v0.0.2 — Frost tier: frozen board, all cascade points ×2 (risk/reward)
+    { id: 13, target: 10000, moves: 22, frost: true },
+    { id: 14, target: 12500, moves: 24, frost: true },
+    { id: 15, target: 15000, moves: 25, frost: true }
   ];
 
   // ===== Utilities ==========================================================
@@ -889,8 +893,10 @@
       return;
     }
 
-    var points = (clusterBases + bonus) * game.combo;
+    var frostMult = (LEVELS[game.levelIndex] && LEVELS[game.levelIndex].frost) ? 2 : 1;
+    var points = (clusterBases + bonus) * game.combo * frostMult;
     game.score += points;
+    if (window.MUX) MUX.bump();
 
     // emit particle bursts + mark gems for shrink/fade
     var clearingGems = [];
