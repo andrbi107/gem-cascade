@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" ry="96" fill="#0F172A"/>
+  <rect x="12" y="12" width="488" height="488" rx="84" ry="84" fill="none" stroke="#1E293B" stroke-width="6"/>
+  <g transform="translate(256 256)">
+    <!-- sapphire diamond body -->
+    <polygon points="0,-150 140,0 0,150 -140,0" fill="#1B3F8A" stroke="#0B1E3F" stroke-width="10" stroke-linejoin="round"/>
+    <!-- top-right facet (lightest) -->
+    <polygon points="0,-150 140,0 0,0" fill="#3A86FF"/>
+    <!-- top-left facet -->
+    <polygon points="0,-150 -140,0 0,0" fill="#2A66D8"/>
+    <!-- bottom-right facet -->
+    <polygon points="0,0 140,0 0,150" fill="#2A66D8"/>
+    <!-- bottom-left facet (darkest) -->
+    <polygon points="0,0 -140,0 0,150" fill="#16306A"/>
+    <!-- table highlight -->
+    <polygon points="0,-150 64,-44 0,0 -64,-44" fill="#A0C8FF" opacity="0.55"/>
+    <!-- sparkle -->
+    <polygon points="-44,-58 -22,-36 -0,-58 -22,-36 0,-14" fill="#FFFFFF" opacity="0.0"/>
+    <polygon points="-58,-30 -34,-6 -10,-30 -34,-6 -10,18" fill="#FFFFFF" opacity="0.45"/>
+    <!-- girdle line -->
+    <line x1="-140" y1="0" x2="140" y2="0" stroke="#0B1E3F" stroke-width="4" opacity="0.6"/>
+  </g>
+</svg>

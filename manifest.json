@@ -1,0 +1,14 @@
+{
+  "name": "Gem Cascade",
+  "short_name": "GemCascade",
+  "description": "A faceted jewel match-3 puzzle with cascading combos and 12 levels.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

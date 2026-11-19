@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0F172A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Gem Cascade — a faceted jewel match-3 puzzle with cascading combos and 12 levels.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+<title>Gem Cascade</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header id="hud" aria-label="Game status">
+      <div class="hud-cell hud-left">
+        <div class="hud-label">Level <span id="hud-level">1</span></div>
+        <div class="hud-sub">Target <span id="hud-target">500</span></div>
+      </div>
+      <div class="hud-cell hud-center">
+        <div class="progress-track" aria-hidden="true"><div id="progress-fill" class="progress-fill"></div></div>
+        <div class="hud-score"><span id="hud-score">0</span></div>
+      </div>
+      <div class="hud-cell hud-right">
+        <div class="hud-label">Moves</div>
+        <div class="hud-moves" id="hud-moves">15</div>
+        <button id="pause-btn" class="icon-btn" type="button" aria-label="Pause game" title="Pause">II</button>
+      </div>
+    </header>
+
+    <main id="stage">
+      <canvas id="board" aria-label="Gem board, 8 by 8 grid"></canvas>
+      <div id="combo-callout" class="combo-callout hidden" aria-live="polite"></div>
+    </main>
+
+    <!-- Start screen -->
+    <section id="screen-start" class="screen" aria-label="Start">
+      <div class="screen-card">
+        <h1 class="title">Gem Cascade</h1>
+        <p class="subtitle">Match faceted gems, chain cascades, clear all 12 vaults.</p>
+        <div id="start-progress" class="start-progress hidden">
+          <p>Continue from Level <span id="start-unlocked">1</span>?</p>
+          <button id="btn-continue" class="btn btn-secondary" type="button">Continue</button>
+        </div>
+        <button id="btn-play" class="btn btn-primary" type="button">Play from Level 1</button>
+        <p class="hint">Tap two adjacent gems or swipe to swap. Arrow keys + Enter/Space on keyboard.</p>
+      </div>
+    </section>
+
+    <!-- Paused screen -->
+    <section id="screen-paused" class="screen hidden" aria-label="Paused">
+      <div class="screen-card">
+        <h2 class="title">Paused</h2>
+        <button id="btn-resume" class="btn btn-primary" type="button">Resume</button>
+        <button id="btn-restart-pause" class="btn btn-secondary" type="button">Restart Level</button>
+        <button id="btn-quit" class="btn btn-ghost" type="button">Quit to Menu</button>
+      </div>
+    </section>
+
+    <!-- Level complete -->
+    <section id="screen-complete" class="screen hidden" aria-label="Level complete">
+      <div class="screen-card">
+        <h2 class="title">Vault Cleared</h2>
+        <p class="row">Level <span id="complete-level">1</span></p>
+        <p class="row">Score <span id="complete-score">0</span></p>
+        <p class="row">Best <span id="complete-best">0</span></p>
+        <button id="btn-next" class="btn btn-primary" type="button">Next Level</button>
+        <button id="btn-map-complete" class="btn btn-ghost" type="button">Level Map</button>
+      </div>
+    </section>
+
+    <!-- Level failed -->
+    <section id="screen-failed" class="screen hidden" aria-label="Level failed">
+      <div class="screen-card">
+        <h2 class="title">Out of Moves</h2>
+        <p class="row">Level <span id="failed-level">1</span></p>
+        <p class="row">Target was <span id="failed-target">500</span></p>
+        <p class="row">You reached <span id="failed-score">0</span></p>
+        <button id="btn-retry" class="btn btn-primary" type="button">Retry Level</button>
+        <button id="btn-map" class="btn btn-ghost" type="button">Level Map</button>
+      </div>
+    </section>
+
+    <!-- Victory -->
+    <section id="screen-victory" class="screen hidden" aria-label="Victory">
+      <div class="screen-card">
+        <h2 class="title">Grand Vault Master</h2>
+        <p class="subtitle">All 12 vaults cleared.</p>
+        <p class="row">Total Score <span id="victory-total">0</span></p>
+        <button id="btn-play-again" class="btn btn-primary" type="button">Play Again</button>
+      </div>
+    </section>
+
+    <!-- Level map (reuses start screen pattern) -->
+    <section id="screen-map" class="screen hidden" aria-label="Level map">
+      <div class="screen-card">
+        <h2 class="title">Level Map</h2>
+        <div id="map-grid" class="map-grid"></div>
+        <button id="btn-map-back" class="btn btn-ghost" type="button">Back</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>
