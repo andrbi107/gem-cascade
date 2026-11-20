@@ -778,6 +778,7 @@
       els['failed-level'].textContent = String(LEVELS[idx].id);
       els['failed-target'].textContent = String(game.target);
       els['failed-score'].textContent = String(game.score);
+      if (window.GK) GK.recordRun({ score: game.totalScore, result: 'failed' });
       showScreen('screen-failed');
     } else {
       // check deadlock -> reshuffle
@@ -1168,6 +1169,7 @@
   function showVictory() {
     game.state = 'victory';
     els['victory-total'].textContent = String(game.totalScore);
+    if (window.GK) GK.recordRun({ score: game.totalScore, result: 'victory' });
     showScreen('screen-victory');
   }
   function quitToMenu() {
@@ -1289,8 +1291,11 @@
     init();
   }
 })();
-// ---- v0.0.4 gamekit wiring ----
+// ---- v0.0.5 gamekit wiring (splash + menu + stats + leaderboard + auto-update) ----
 if (window.GK) {
+  GK.boot({ title: "Gem Cascade", tagline: "Match-3 gem puzzle", theme: "#120a18" });
   GK.help({ title: "Gem Cascade", objective: "Match 3+ gems to clear them and progress through levels.", controls: ["Mouse / Touch: drag to swap adjacent gems","Match 4+ for special gems","P: pause","F: fullscreen"], tips: "Chain cascades for big scores." });
   GK.exposeState(function () { try { return { score: (window.S && window.S.score) || window.score || 0, mode: (window.S && window.S.mode) || 'play', wave: (window.S && window.S.wave) || 0 }; } catch (e) { return {}; } });
+  GK._manualRecord = true;
+  setTimeout(function () { GK.ready(); }, 600);
 }
