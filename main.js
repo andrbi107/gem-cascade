@@ -486,53 +486,65 @@
   }
 
   function drawLineClearerOverlay(rad, kind, time) {
+    // v0.0.3 — distinctive "beam gem": glowing stripe + symmetric arrowheads at both ends
     var pulse = 0.5 + 0.5 * Math.sin(time * 6);
+    var horiz = (kind === SP_LINE_H);
     ctx.save();
-    ctx.globalAlpha = 0.55 + 0.35 * pulse;
+    // glowing beam stripe across the whole gem
+    ctx.globalAlpha = 0.42 + 0.3 * pulse;
     ctx.strokeStyle = '#FFFFFF';
-    ctx.lineWidth = rad * 0.16;
+    ctx.lineWidth = rad * 0.32;
     ctx.lineCap = 'round';
-    if (kind === SP_LINE_H) {
-      // rightward arrow
-      var y = 0;
+    ctx.shadowBlur = rad * 0.55;
+    ctx.shadowColor = '#FFFFFF';
+    ctx.beginPath();
+    if (horiz) { ctx.moveTo(-rad * 0.8, 0); ctx.lineTo(rad * 0.8, 0); }
+    else { ctx.moveTo(0, -rad * 0.8); ctx.lineTo(0, rad * 0.8); }
+    ctx.stroke();
+    // arrowheads at BOTH ends -> reads as a line clearer, not a single direction arrow
+    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 0.92;
+    ctx.fillStyle = '#FFFFFF';
+    var tip = rad * 0.8, base = rad * 0.52, ah = rad * 0.24;
+    for (var s = -1; s <= 1; s += 2) {
       ctx.beginPath();
-      ctx.moveTo(-rad * 0.5, y); ctx.lineTo(rad * 0.45, y);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(rad * 0.45, y); ctx.lineTo(rad * 0.18, y - rad * 0.28);
-      ctx.moveTo(rad * 0.45, y); ctx.lineTo(rad * 0.18, y + rad * 0.28);
-      ctx.stroke();
-    } else {
-      var x = 0;
-      ctx.beginPath();
-      ctx.moveTo(x, -rad * 0.5); ctx.lineTo(x, rad * 0.45);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(x, rad * 0.45); ctx.lineTo(x - rad * 0.28, rad * 0.18);
-      ctx.moveTo(x, rad * 0.45); ctx.lineTo(x + rad * 0.28, rad * 0.18);
-      ctx.stroke();
+      if (horiz) {
+        ctx.moveTo(s * tip, 0); ctx.lineTo(s * base, -ah); ctx.lineTo(s * base, ah);
+      } else {
+        ctx.moveTo(0, s * tip); ctx.lineTo(-ah, s * base); ctx.lineTo(ah, s * base);
+      }
+      ctx.closePath(); ctx.fill();
     }
     ctx.restore();
   }
 
   function drawBombOverlay(rad, time) {
+    // v0.0.3 — distinctive "bomb star": pulsing glow ring + 8-point star + bright core
     var pulse = 0.5 + 0.5 * Math.sin(time * 7);
     ctx.save();
-    // pulsing ring
-    ctx.globalAlpha = 0.4 + 0.35 * pulse;
+    // pulsing outer glow ring
+    ctx.globalAlpha = 0.35 + 0.3 * pulse;
     ctx.strokeStyle = '#FFB703';
-    ctx.lineWidth = rad * 0.12;
-    ctx.beginPath(); ctx.arc(0, 0, rad * (0.55 + 0.08 * pulse), 0, Math.PI * 2); ctx.stroke();
-    // 4-point star burst
-    ctx.globalAlpha = 0.85;
+    ctx.lineWidth = rad * 0.14;
+    ctx.shadowBlur = rad * 0.5;
+    ctx.shadowColor = '#FFB703';
+    ctx.beginPath(); ctx.arc(0, 0, rad * (0.62 + 0.08 * pulse), 0, Math.PI * 2); ctx.stroke();
+    ctx.shadowBlur = 0;
+    // 8-point star burst
+    ctx.globalAlpha = 0.92;
     ctx.fillStyle = '#FFFFFF';
-    var s = rad * 0.34;
+    var R = rad * 0.52, r = rad * 0.2;
     ctx.beginPath();
-    ctx.moveTo(0, -s); ctx.lineTo(s * 0.28, 0); ctx.lineTo(0, s);
-    ctx.lineTo(-s * 0.28, 0); ctx.closePath();
-    ctx.moveTo(-s, 0); ctx.lineTo(0, s * 0.28); ctx.lineTo(s, 0);
-    ctx.lineTo(0, -s * 0.28); ctx.closePath();
-    ctx.fill();
+    for (var i = 0; i < 16; i++) {
+      var ang = (i / 16) * Math.PI * 2 - Math.PI / 2;
+      var rr = (i % 2 === 0) ? R : r;
+      var px = Math.cos(ang) * rr, py = Math.sin(ang) * rr;
+      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    }
+    ctx.closePath(); ctx.fill();
+    // bright gold core
+    ctx.fillStyle = '#FFD66B';
+    ctx.beginPath(); ctx.arc(0, 0, rad * 0.14, 0, Math.PI * 2); ctx.fill();
     ctx.restore();
   }
 

@@ -1,5 +1,5 @@
 /* Gem Cascade service worker — precaches the app shell and serves offline. */
-const CACHE = 'gem-cascade-v2';
+const CACHE = 'gem-cascade-v3';
 const ASSETS = [
   './',
   './index.html', './mobile-ux.js',
