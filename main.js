@@ -1289,3 +1289,8 @@
     init();
   }
 })();
+// ---- v0.0.4 gamekit wiring ----
+if (window.GK) {
+  GK.help({ title: "Gem Cascade", objective: "Match 3+ gems to clear them and progress through levels.", controls: ["Mouse / Touch: drag to swap adjacent gems","Match 4+ for special gems","P: pause","F: fullscreen"], tips: "Chain cascades for big scores." });
+  GK.exposeState(function () { try { return { score: (window.S && window.S.score) || window.score || 0, mode: (window.S && window.S.mode) || 'play', wave: (window.S && window.S.wave) || 0 }; } catch (e) { return {}; } });
+}

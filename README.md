@@ -2,10 +2,10 @@
 
 > یک پازل match-3 جواهر با cascade، specialهای line-clearer و bomb، و ۱۲ مرحله — PWA با Vanilla JS.
 
-[![Version](https://img.shields.io/badge/version-v0.0.3-blue)](https://github.com/andrbi107/gem-cascade/releases/tag/v0.0.3) [![PWA](https://img.shields.io/badge/PWA-installable-purple)](https://andrbi107.github.io/gem-cascade/) [![No deps](https://img.shields.io/badge/dependencies-none-success)](https://github.com/andrbi107/gem-cascade) [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+[![Version](https://img.shields.io/badge/version-v0.0.4-blue)](https://github.com/andrbi107/gem-cascade/releases/tag/v0.0.4) [![PWA](https://img.shields.io/badge/PWA-installable-purple)](https://andrbi107.github.io/gem-cascade/) [![deps](https://img.shields.io/badge/deps-Howler.js_local-blueviolet)](https://github.com/andrbi107/gem-cascade) [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 🎮 **[بازی کن](https://andrbi107.github.io/gem-cascade/)** — نسخه‌ی آنلاین روی GitHub Pages
-📦 **[مخزن گیت‌هاب](https://github.com/andrbi107/gem-cascade)** · 🏷️ **[Release v0.0.3](https://github.com/andrbi107/gem-cascade/releases/tag/v0.0.3)**
+📦 **[مخزن گیت‌هاب](https://github.com/andrbi107/gem-cascade)** · 🏷️ **[Release v0.0.4](https://github.com/andrbi107/gem-cascade/releases/tag/v0.0.4)**
 
 ---
 
@@ -17,7 +17,15 @@
 
 ---
 
-## تغییرات v0.0.3 (جدید)
+## تغییرات v0.0.4 (جدید)
+
+(v0.0.4 فقط کیت مشترک؛ گیم‌پلی v0.0.3 حفظ شد: شکل متمایز ترکیب‌های ۴تایی+ + پیشرفت مرحله‌ای).
+
+**همه‌ی بازی‌ها (v0.0.4)** — `gamekit.js` مشترک + `vendor/howler.min.js` محلی: صدای Howler با SFX خودکار (pickup/collision/game-over از طریق پل MUX)، صفحه‌ی **راهنما**، صفحه‌ی **تنظیمات** (قطع/وصل صدا)، قلاب‌های تست (`render_game_to_text`/`advanceTime`)، **فول‌اسکرین** (کلید F)، و سیستم **دستاوردها**. cache سرویس‌ورکر به v4 ارتقا یافت (آفلاین کامل با vendor).
+
+---
+
+## تغییرات v0.0.3
 
 **Gem Cascade** — جواهرهای ترکیب ۴تایی+ حالا شکل متمایز دارند (پرتو نوری دوطرفه برای line-clearer، ستاره‌ی ۸پر + هاله برای bomb).
 
